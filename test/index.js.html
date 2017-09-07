@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>index.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../";
+    var thisFile = "test/index.js";
+    var defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container">
+    <div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+    
+      <tr>
+        <td class="docs">
+          <h1>index.js</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+    
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1"></a>
+</div>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript"><span class="hljs-keyword">import</span> streamToWorker <span class="hljs-keyword">from</span> <span class="hljs-string">'../lib'</span>
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2"></a>
+</div>
+<p>import {
+back as nockBack
+} from 'nock'</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript"><span class="hljs-keyword">import</span> vow <span class="hljs-keyword">from</span> <span class="hljs-string">'vow'</span>
+<span class="hljs-keyword">import</span> assert <span class="hljs-keyword">from</span> <span class="hljs-string">'assert'</span>
+<span class="hljs-keyword">import</span> debug <span class="hljs-keyword">from</span> <span class="hljs-string">'debug'</span>
+<span class="hljs-keyword">const</span> dbg = debug(<span class="hljs-string">'stream-to-worker'</span>)
+
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3"></a>
+</div>
+<p>import debug from 'debug'
+const dbg = debug('metalsmith-google-drive')</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript">
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4"></a>
+</div>
+<p>nockBack.setMode('record')
+nockBack.fixtures = 'test/fixtures/scrape'</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript">
+describe(<span class="hljs-string">'metalsmith-classeur test'</span>, () =&gt; {
+  beforeEach(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5"></a>
+</div>
+<p>create spy
+sinon.spy(cloudinary.api, 'resources')</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript">  })
+  afterEach(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6"></a>
+</div>
+<p>cloudinary.api.resources.restore()</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript">  })
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-7" id="section-7"></a>
+</div>
+<p>it('should be able to scrape a folder', (done) =&gt; {
+nockBack('scrape', (writeRequests) =&gt; {
+Metalsmith('test/fixtures/scrape')
+.use(classeur(Object.assign(
+{
+destPath: 'articles'
+},
+config.get('metalsmith-classeur')
+)))
+.use((files) =&gt; {
+assert.ok(files['articles/test-file'])
+})
+.build((err, files) =&gt; {
+if (err) return done(err)
+writeRequests()
+done()
+})
+})
+}).timeout(0)</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="javascript">  it(<span class="hljs-string">'should stream to workers'</span>, (done) =&gt; {
+    streamToWorker({
+      <span class="hljs-attr">fetch</span>: <span class="hljs-function">(<span class="hljs-params">retrieved</span>) =&gt;</span> {
+        <span class="hljs-keyword">if</span> (retrieved &gt; <span class="hljs-number">50</span>) <span class="hljs-keyword">return</span> [<span class="hljs-literal">null</span>]
+        <span class="hljs-keyword">return</span> vow.resolve(
+          [...new <span class="hljs-built_in">Array</span>(<span class="hljs-number">10</span>)].map(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">Math</span>.round(<span class="hljs-built_in">Math</span>.random()))
+        )
+      },
+      <span class="hljs-attr">worker</span>: <span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> {
+        <span class="hljs-keyword">return</span> vow.timeout(item, <span class="hljs-number">50</span>)
+      }
+    })
+    .then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+      assert.ok(<span class="hljs-literal">true</span>)
+      done()
+    })
+    .catch(dbg)
+  })
+})
+
+</pre>
+        </td>
+      </tr>
+    
+  </tbody>
+</table>
+
+  </div>
+</body>
+</html>
